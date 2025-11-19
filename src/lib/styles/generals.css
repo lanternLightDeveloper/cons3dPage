@@ -1,0 +1,97 @@
+/* reset styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--font-Main);
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+	color: var(--txt-1);
+	background: var(--bg-1);
+    line-height: 1.5;
+    overflow-x: hidden;
+    letter-spacing: .05em;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--accent-3);
+
+    &:hover {
+        transition: var(--transit);
+    }
+}
+
+h1 {
+    font-size: var(--size-8);
+}
+
+h2 {
+    font-size: var(--size-6);
+    color: var(--accent-1);
+    border-bottom: var(--bord);
+}
+
+h3 {
+    font-size: var(--size-5);
+}
+
+p {
+	font-size: var(--size-4);
+	text-shadow: var(--text-Shadow);
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    max-width: 100vw;
+}
+
+.alert, .notice {
+	border: var(--bord);
+	padding: 1rem;
+	font-weight: 600;
+	text-align: center;
+    margin: var(--size-4) 0;
+}
+
+.alert {
+    background: var(--accent-2);
+}
+
+.notice {
+    background: var(--accent-1);
+}
+
+
+:is(h1, h2, h3, h4, p, .marg-Also) {
+    margin: var(--space-Qtr);
+}
+
+    /* Tablet Screen  */
+@media (min-width: 768px) {
+:is(h1, h2, h3, h4, p, .marg-Also) {
+    margin: var(--space-Half);
+}
+}
+
+    /* Desktop Screen */
+@media (min-width: 1024px) {
+    :is(h1, h2, h3, h4, p, ul, .marg-Also) {
+    margin: var(--space-Med);
+}
+} 
+
+    /* Large Screen */
+@media (min-width: 1440px) {
+    :is(h1, h2, h3, h4, p, ul, .marg-Also) {
+    margin: var(--space-Lg);
+}
+} 

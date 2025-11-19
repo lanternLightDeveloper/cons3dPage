@@ -1,0 +1,111 @@
+
+	/* 🦕  🦖🦖🦖 🦕 🦕  Headline 💀= 💣 🌠 */
+.head_Line {
+	position: relative;
+	width: fit-content;
+	margin: var(--space-Full-X);
+	padding: var(--size-4);
+	background: var(--bg-2);
+	border: var(--bord);
+	border-radius: var(--rad-Sm);
+	font-family: var(--font-Alt);
+
+	& h1 {
+		all: unset;
+		font-size: var(--size-6);
+		text-transform: capitalize;
+	}
+}
+
+
+	/* 🦕  🦖🦖🦖 🦕 🦕 Font  💀= 💣 🌠 */
+.altFont {
+	font-family: var(--font-Alt);
+}
+
+
+	/* 🦕  🦖🦖🦖 🦕 🦕 Boxes 💀= 💣 🌠 */
+.glass-Box { 
+	backdrop-filter: blur(8px);
+	--webkit-backdrop-filter: blur(1.5px);
+	border: var(--bord);
+		border-radius: var(--rad-Sm);
+}
+
+.glass-Box-2 {
+	background: var(--bg-2);
+	backdrop-filter: blur(5px);
+	--webkit-backdrop-filter: blur(1px);
+}
+
+
+	/* 🦕  🦖🦖🦖 🦕 🦕 Forms 💀= 💣 🌠 */
+.classicForm {
+	display: flex;
+	flex-direction: column;
+	background: var(--hallow);
+	width: 80%;
+	max-width: 80vw;
+	padding: var(--size-7);
+	margin: 5vh auto;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border-radius: var(--rad-Sm);
+	box-shadow: var(--box-Shadow);
+	backdrop-filter: blur(10px);
+	gap: var(--size-4);
+
+	& label,
+	p,
+	button {
+		font-size: var(--size-5);
+		font-weight: 500;
+	}
+
+	& input,
+	textarea {
+		width: 80%;
+		padding: var(--size-3);
+		background: var(--bg-1);
+		color: var(--txt-1);
+		border: var(--bord);
+		border-radius: var(--rad-Sm);
+		transition: var(--transit);
+	}
+
+	& input:focus,
+	textarea:focus {
+		background: var(--color-active);
+		color: var(--txt-2);
+	}
+}
+
+
+	/* 🦕  🦖🦖🦖 🦕 🦕 Extras  💀= 💣 🌠 */
+/* Opacity for depth */
+.gradient-bg-depth {
+	background: linear-gradient(
+		135deg,
+		rgba(255, 0, 0, var(--op-M)),
+		rgba(0, 0, 255, var(--op-L))
+	);
+	height: 100px;
+	width: 100px;
+}
+
+/* Property */
+@property --rotation {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
+
+@keyframes rotate {
+	from {
+		--rotation: 0deg;
+	}
+	to {
+		--rotation: 360deg;
+	}
+}
