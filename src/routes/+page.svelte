@@ -4,20 +4,20 @@
 	import Scene from '$lib/Scene.svelte';
 	import type { CharacterActions } from './types';
 
-	let action = $state<CharacterActions>('idle');
+	let action = $state<CharacterActions>('idleChainsaw');
 </script>
 
 <Pane title="Transitions" position="fixed">
 	<Button
-		title="Wave"
+		title="Idle"
 		on:click={() => {
-			action = 'waveHello';
+			action = 'idleChainsaw';
 		}}
 	/>
 	<Button
-		title="Idle"
+		title="SAW'S UP"
 		on:click={() => {
-			action = 'idle';
+			action = 'raiseChainsaw';
 		}}
 	/>
 </Pane>
