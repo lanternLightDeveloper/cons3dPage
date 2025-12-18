@@ -16,6 +16,11 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
+.npmrc
+.prettierignore
+.prettierirc
+.eslint.config.js
+.package-lock.json
 
 # Environment
 .env
@@ -26,7 +31,4 @@ Thumbs.db
 # Vite temp files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# Optional custom folders (only if they are generated)
-# /Extra
-# /Models
+ 
