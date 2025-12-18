@@ -46,7 +46,7 @@
 	}
 
 	let theme = $state('Dark');
-	const themes = ['Dark', 'Light', 'Headache', 'Colorblind'];
+	const themes = ['Dark', 'Light', 'Colorblind'];
 
 	function setTheme(name) {
 		theme = name;

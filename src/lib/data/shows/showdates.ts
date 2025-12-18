@@ -16,8 +16,8 @@ export const ShowDates = [
 		location: 'El Corazon',
 		city: 'Seattle, WA',
 		venueUrl: 'https://www.elcorazonseattle.com/',
-		ticketsUrl: 'https://www.elcorazonseattle.com/',
+		ticketsUrl: 'https://www.elcorazonseattle.com/shows/for-the-love-invitational-10-jan',
 		description: 'Join us for an unforgettable night of music and art at El Corazon in Seattle!',
-		price: '$30'
+		price: 'FREE'
 	}
 ];

@@ -4,111 +4,73 @@
     --bg-2:oklab(24.354% 0 -0.00003); 
     
     --txt-1: oklch(98.441% 0.00317 15.269); 
-    --txt-2: lch(95.95% 12.75 109.18);
+    --txt-2: lch(88.57% 1.25 74.88);
 
-    --accent-1: oklch(50.811% 0.20165 28.5);  
-    --accent-2:  oklch(54.323% 0.14571 46.586);
+    --accent-1: oklch(43.186% 0.16424 27.669);  
+    --accent-2:  oklch(54.962% 0.14128 47.681);
 
-    --error:oklch(55.512% 0.25878 322.073);  
-
-    --gradient: linear-gradient(to bottom right,var(--accent-1),   color-mix(in srgb, var(--accent-1) 90%, var(--accent-2) 10%),var(--accent-2));
-    --gradientFlip:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
-
-    --hover: color-mix(in oklch, var(--accent-1) 80%, white 20%);
-    --hover-2: color-mix(in oklch, var(--accent-2) 80%, white 20%);
-    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, black 25%);
-
-    --border-color: color-mix(in oklch, var(--accent-1) 100%, var(--bg-1) 10%);
-    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 50%);
-    
-    --shadow:color-mix(in oklch, var(--bg-1) 70%, var(--bg-1) 10%);
-    
-    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 80%);
-    --hallow-Accent:color-mix(in oklch, var(--accent-1) 100%, transparent 80%);
-
-    /* Adjusted states for Light Theme */
-    @media (prefers-color-scheme: light)   {
-    --txt-1: oklch(9.327% 0.01235 238.398); 
-    --txt-2:oklab(24.354% 0 -0.00003); 
-    
-    --bg-1: oklch(98.441% 0.00317 15.269); 
-    --bg-2: lch(95.95% 12.75 109.18);
+    --error:oklch(80.681% 0.17536 110.857);  
 
     --gradient: linear-gradient(to bottom right,var(--accent-1),   color-mix(in srgb, var(--accent-1) 90%, var(--accent-2) 10%),var(--accent-2));
-    --gradientFlip:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
+    --gradientUp:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
 
-    --hover: color-mix(in oklch, var(--accent-1) 80%, white 20%);
-    --hover-2: color-mix(in oklch, var(--accent-2) 80%, white 20%);
-    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, black 25%);
+    --hover: color-mix(in oklch, var(--accent-1) 80%, black 30%);
+    --hover-2: color-mix(in oklch, var(--accent-2) 80%, black 30%);
+    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, white 15%);
 
     --border-color: color-mix(in oklch, var(--accent-1) 100%, var(--bg-1) 10%);
-    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 50%);
+    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 10%);
     
-    --shadow:color-mix(in oklch, var(--bg-1) 70%, var(--bg-1) 10%);
-    
-    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 80%);
+    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 50%);
     --hallow-Accent:color-mix(in oklch, var(--accent-1) 100%, transparent 80%);
-    }
-
 }
 
     [data-theme="Dark"] {
-    --bg-1: oklch(9.327% 0.01235 238.398); 
+   --bg-1: oklch(9.327% 0.01235 238.398); 
     --bg-2:oklab(24.354% 0 -0.00003); 
     
     --txt-1: oklch(98.441% 0.00317 15.269); 
-    --txt-2: lch(95.95% 12.75 109.18);
+    --txt-2: lch(88.57% 1.25 74.88);
 
-    --accent-1: oklch(50.811% 0.20165 28.5);  
-    --accent-2:  oklch(54.323% 0.14571 46.586);
+    --accent-1: oklch(43.186% 0.16424 27.669);  
+    --accent-2:  oklch(54.962% 0.14128 47.681);
 
-    --error:oklch(55.512% 0.25878 322.073);  
+    --error:oklch(80.681% 0.17536 110.857);  
 
     --gradient: linear-gradient(to bottom right,var(--accent-1),   color-mix(in srgb, var(--accent-1) 90%, var(--accent-2) 10%),var(--accent-2));
-    --gradientFlip:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
+    --gradientUp:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
 
-    --hover: color-mix(in oklch, var(--accent-1) 80%, white 20%);
-    --hover-2: color-mix(in oklch, var(--accent-2) 80%, white 20%);
-    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, black 25%);
+    --hover: color-mix(in oklch, var(--accent-1) 80%, black 30%);
+    --hover-2: color-mix(in oklch, var(--accent-2) 80%, black 30%);
+    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, white 15%);
 
     --border-color: color-mix(in oklch, var(--accent-1) 100%, var(--bg-1) 10%);
-    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 50%);
+    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 10%);
     
-    --shadow:color-mix(in oklch, var(--bg-1) 70%, var(--bg-1) 10%);
-    
-    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 80%);
+    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 50%);
     --hallow-Accent:color-mix(in oklch, var(--accent-1) 100%, transparent 80%);
     }
 
     [data-theme="Light"] {
+    --bg-1: oklch(98.441% 0.00317 15.269); 
+    --bg-2: lch(88.57% 1.25 74.88);
+
     --txt-1: oklch(9.327% 0.01235 238.398); 
     --txt-2:oklab(24.354% 0 -0.00003); 
-    
-    --bg-1: oklch(98.441% 0.00317 15.269); 
-    --bg-2: lch(95.95% 12.75 109.18);
 
-    --gradient: linear-gradient(to bottom right,var(--accent-1),   color-mix(in srgb, var(--accent-1) 90%, var(--accent-2) 10%),var(--accent-2));
-    --gradientFlip:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
-
-    --hover: color-mix(in oklch, var(--accent-1) 80%, white 20%);
-    --hover-2: color-mix(in oklch, var(--accent-2) 80%, white 20%);
-    --color-active: color-mix(in oklch, var(--accent-1 ) 80%, black 25%);
-
-    --border-color: color-mix(in oklch, var(--accent-1) 100%, var(--bg-1) 10%);
-    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 50%);
-    
-    --shadow:color-mix(in oklch, var(--bg-1) 70%, var(--bg-1) 10%);
-    
-    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 80%);
-    --hallow-Accent:color-mix(in oklch, var(--accent-1) 100%, transparent 80%);
+    --hover-2: color-mix(in oklch, var(--accent-2) 80%, black 10%);
+    --color-active: color-mix(in oklch, var(--accent-2 ) 80%, white 15%);
+    --border-color: color-mix(in oklch, var(--accent-1) 100%, var(--txt-1) 10%);
+    --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 10%);
+    --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 50%); 
     }
-
-    [data-theme="Headache"] {
-        --bg-1: oklch(7% 0.01 305);  /*Deep black */
-        --bg-2: oklch(30% 0.01 305); /* Extra soft */
-        --txt-1: oklch(75% 0.02 305); /* Grey*/
-        --txt-2: oklch(75% 0.02 305); /* Grey*/
-        --accent-1: oklch(25% 0.1 305); /* Muted purple */
+    
+    [data-theme="Colorblind"] {
+      --bg-1: oklch(7% 0.01 305);  /*Deep black */
+        --bg-2: oklch(25.197% 0.00003 271.152); /* Extra soft */
+        --txt-1: oklch(72.193% 0.00008 271.152); /* Grey*/
+        --txt-2: oklch(79.837% 0.00009 271.152); /* Grey*/
+        --accent-1: oklch(33.815% 0.1232 26.919); /* Muted purple */
         --accent-2: oklch(35% 0.1 95); /* Muted gold */ 
     
         --hover: color-mix(in oklch, var(--accent-1) 80%, black 20%);
@@ -119,13 +81,13 @@
         --hallow:var(--bg-2);
     }
 
-    [data-theme="Colorblind"] {
-        --bg-1: oklch(7% 0.1 305);  
-        --bg-2: oklch(30% 0.01 305);  
-        --txt-1:  oklch(99% 0.003 95); 
-        --txt-2: oklch(99% 0.003 95);  
-        --accent-1: oklch(42% 0.01 305); 
-        --accent-2: oklch(65% 0.18 95); 
+    [data-theme="Headache"] {
+        --bg-1: oklch(7% 0.01 305);  /*Deep black */
+        --bg-2: oklch(30% 0.01 305); /* Extra soft */
+        --txt-1: oklch(75% 0.02 305); /* Grey*/
+        --txt-2: oklch(75% 0.02 305); /* Grey*/
+        --accent-1: oklch(25% 0.1 305); /* Muted purple */
+        --accent-2: oklch(35% 0.1 95); /* Muted gold */ 
     
         --hover: color-mix(in oklch, var(--accent-1) 80%, black 20%);
         --color-active: color-mix(in oklch, var(--bg-2) 90%, white 10%);
