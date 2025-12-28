@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Parallax from '$lib/Images/dripsbuuud.png';
 	import { onMount } from 'svelte';
 	import { Socials } from '$lib/data/shows/contactPoints';
