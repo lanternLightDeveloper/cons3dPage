@@ -2,10 +2,10 @@
 	import Parallax from '$lib/Images/dripsbuuud.png';
 	import { onMount } from 'svelte';
 	import { Socials } from '$lib/data/shows/contactPoints';
-	import Press1 from '$lib/Images/Gallery/con32.jpg';
-	import Press2 from '$lib/Images/Gallery/con33.jpg';
-	import Press3 from '$lib/Images/Gallery/con34.jpg';
-	import Press4 from '$lib/Images/Gallery/con6.jpg';
+	import Press1 from '$lib/Images/gallery/con32.jpg';
+	import Press2 from '$lib/Images/gallery/con33.jpg';
+	import Press3 from '$lib/Images/gallery/con34.jpg';
+	import Press4 from '$lib/Images/gallery/con6.jpg';
 	import Press5 from '$lib/Images/con4.jpg';
 
 	let images = $state([Press1, Press2, Press3, Press4, Press5]);
@@ -331,7 +331,7 @@
 		z-index: 975;
 
 		.header-Image {
-			background-image: url('$lib/Images/Gallery/con31.jpg');
+			background-image: url('$lib/Images/gallery/con31.jpg');
 			background-size: cover;
 			background-position: center;
 			position: absolute;
