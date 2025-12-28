@@ -2,30 +2,59 @@
 	import { Socials } from '$lib/data/shows/contactPoints';
 	import { onMount } from 'svelte';
 
-	let cooldownRemaining = $state(0);
-	const COOLDOWN_MINUTES = 15;
+	let cooldownRemaining = $state(0); // in minutes
+	const COOLDOWN_MINUTES = 33;
 	const COOLDOWN_MS = COOLDOWN_MINUTES * 60 * 1000;
 
-	// Check cooldown on load
 	onMount(() => {
+		if (typeof localStorage === 'undefined') return;
+
 		const last = localStorage.getItem('lastContactSubmit');
-		if (last) {
-			const diff = Date.now() - Number(last);
-			if (diff < COOLDOWN_MS) {
-				cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
-			}
+		if (!last) return;
+
+		const diff = Date.now() - Number(last);
+
+		if (diff < COOLDOWN_MS) {
+			cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
+			startCountdown();
 		}
 	});
 
-	function handleSubmit(event) {
+	function startCountdown() {
+		const interval = setInterval(() => {
+			const last = localStorage.getItem('lastContactSubmit');
+			if (!last) {
+				cooldownRemaining = 0;
+				clearInterval(interval);
+				return;
+			}
+
+			const diff = Date.now() - Number(last);
+
+			if (diff >= COOLDOWN_MS) {
+				cooldownRemaining = 0;
+				clearInterval(interval);
+				return;
+			}
+
+			cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
+		}, 1000 * 30); // update every 30s (or 1000 for every second)
+	}
+
+	function handleSubmit(event: SubmitEvent) {
+		// Block if still in cooldown
 		if (cooldownRemaining > 0) {
 			event.preventDefault();
 			alert(`Please wait ${cooldownRemaining} more minute(s) before sending another message.`);
 			return;
 		}
 
-		// Save timestamp BEFORE sending
-		localStorage.setItem('lastContactSubmit', Date.now().toString());
+		// Set cooldown *before* submit – assume success for client-side
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('lastContactSubmit', Date.now().toString());
+		}
+
+		// let the form submit to Netlify
 	}
 </script>
 
@@ -47,6 +76,7 @@
 			name="contact"
 			method="POST"
 			data-netlify="true"
+			netlify-honeypot="bot-field"
 			onsubmit={handleSubmit}
 		>
 			<input type="hidden" name="form-name" value="contact" />
@@ -64,7 +94,13 @@
 			<label for="message">Message</label>
 			<textarea id="message" name="message" required aria-required="true"></textarea>
 
-			<button class="btn-Ghost" type="submit">Send Message</button>
+			<button class="btn-Ghost" type="submit" disabled={cooldownRemaining > 0}>
+				{#if cooldownRemaining > 0}
+					Please wait {cooldownRemaining} min
+				{:else}
+					Send Message
+				{/if}
+			</button>
 		</form>
 	</section>
 
