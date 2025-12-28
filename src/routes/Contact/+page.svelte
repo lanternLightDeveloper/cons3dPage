@@ -1,5 +1,32 @@
 <script lang="ts">
 	import { Socials } from '$lib/data/shows/contactPoints';
+	import { onMount } from 'svelte';
+
+	let cooldownRemaining = $state(0);
+	const COOLDOWN_MINUTES = 15;
+	const COOLDOWN_MS = COOLDOWN_MINUTES * 60 * 1000;
+
+	// Check cooldown on load
+	onMount(() => {
+		const last = localStorage.getItem('lastContactSubmit');
+		if (last) {
+			const diff = Date.now() - Number(last);
+			if (diff < COOLDOWN_MS) {
+				cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
+			}
+		}
+	});
+
+	function handleSubmit(event) {
+		if (cooldownRemaining > 0) {
+			event.preventDefault();
+			alert(`Please wait ${cooldownRemaining} more minute(s) before sending another message.`);
+			return;
+		}
+
+		// Save timestamp BEFORE sending
+		localStorage.setItem('lastContactSubmit', Date.now().toString());
+	}
 </script>
 
 <svelte:head>
@@ -15,7 +42,13 @@
 		<h2 id="contact-heading">Contact Me</h2>
 		<p>For booking, collaborations, or business inquiries:</p>
 
-		<form class="classicForm" name="contact" method="POST" data-netlify="true">
+		<form
+			class="classicForm"
+			name="contact"
+			method="POST"
+			data-netlify="true"
+			onsubmit={handleSubmit}
+		>
 			<input type="hidden" name="form-name" value="contact" />
 
 			<div style="display:none" aria-hidden="true">
