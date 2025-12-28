@@ -69,7 +69,7 @@
 		}, 1000 * 30);
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
 		if (cooldownRemaining > 0) {
 			event.preventDefault();
 			alert(`Please wait ${cooldownRemaining} more minute(s) before sending another message.`);

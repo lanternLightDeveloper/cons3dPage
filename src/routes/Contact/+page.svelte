@@ -2,7 +2,7 @@
 	import { Socials } from '$lib/data/shows/contactPoints';
 	import { onMount } from 'svelte';
 
-	let cooldownRemaining = $state(0);
+	let cooldownRemaining = $state(0); // in minutes
 	const COOLDOWN_MINUTES = 33;
 	const COOLDOWN_MS = COOLDOWN_MINUTES * 60 * 1000;
 
@@ -38,19 +38,23 @@
 			}
 
 			cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
-		}, 1000 * 30);
+		}, 1000 * 30); // update every 30s (or 1000 for every second)
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit(event: SubmitEvent) {
+		// Block if still in cooldown
 		if (cooldownRemaining > 0) {
 			event.preventDefault();
 			alert(`Please wait ${cooldownRemaining} more minute(s) before sending another message.`);
 			return;
 		}
 
+		// Set cooldown *before* submit – assume success for client-side
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem('lastContactSubmit', Date.now().toString());
 		}
+
+		// let the form submit to Netlify
 	}
 </script>
 
