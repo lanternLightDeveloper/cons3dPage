@@ -131,7 +131,7 @@
 	h2,
 	h3,
 	p {
-		margin: 0.5rem 1rem;
+		margin: 0.15rem 1rem;
 	}
 
 	.size-row {

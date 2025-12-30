@@ -166,7 +166,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		z-index: 950;
+		z-index: 999;
 		overflow: hidden;
 		animation: fadeIn 0.4s ease-in-out forwards;
 	}

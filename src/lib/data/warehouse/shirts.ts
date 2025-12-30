@@ -238,22 +238,22 @@ export const Cds = [
 // 			},
 // 			{ label: 'XL', catalogObjectId: 'VIO4C6N3O4SPX3YZTSVYYV3T', description: 'XL – chest 46-48' },
 // 			{
-// 				label: 'XXL',
+// 				label: '2XL',
 // 				catalogObjectId: 'ZFF55MMEMFUZ5D3FWF7SV5LR',
-// 				description: 'XXL – chest 50-52'
+// 				description: '2XL – chest 50-52'
 // 			},
 // 			{
-// 				label: 'XXXL',
+// 				label: '3XL',
 // 				catalogObjectId: '7YJNAWUFXATHUKFV3GX7GRJE',
 // 				description: '3XL – chest 52-54'
 // 			},
 // 			{
-// 				label: 'XXXXL',
+// 				label: '4XL',
 // 				catalogObjectId: '5OUYRLR2CNIOX3AKKOIV2LX4',
 // 				description: '4XL – chest 56-58'
 // 			},
 // 			{
-// 				label: 'XXXXXL',
+// 				label: '5XL',
 // 				catalogObjectId: 'YYFKRBTCKZBBNVXHYNCIM4KC',
 // 				description: '5XL – chest 60-62'
 // 			}
@@ -290,22 +290,22 @@ export const Cds = [
 // 			},
 // 			{ label: 'XL', catalogObjectId: 'R5I7JBXOC2FAW2WXPOCYKLYG', description: 'XL – chest 46-48' },
 // 			{
-// 				label: 'XXL',
+// 				label: '2XL',
 // 				catalogObjectId: 'A5AMMMYGRCTEQQER6TEDBPGJ',
-// 				description: 'XXL – chest 50-52'
+// 				description: '2XL – chest 50-52'
 // 			},
 // 			{
-// 				label: 'XXXL',
+// 				label: '3XL',
 // 				catalogObjectId: 'TYID7SDBVXG6QL43DBBR4BSU',
 // 				description: '3XL – chest 52-54'
 // 			},
 // 			{
-// 				label: 'XXXXL',
+// 				label: '4XL',
 // 				catalogObjectId: 'IDTGRZNBZ2B4A4YRZYDVAO2U',
 // 				description: '4XL – chest 56-58'
 // 			},
 // 			{
-// 				label: 'XXXXXL',
+// 				label: '5XL',
 // 				catalogObjectId: 'JGZHTBBTD6SIFGUKKETHUJVW',
 // 				description: '5XL – chest 60-62'
 // 			}
@@ -351,9 +351,9 @@ export const Shirts = [
 			},
 			{ label: 'XL', catalogObjectId: 'WV5EGRL64IFJ6WM25AZYJXTW', description: 'XL – chest 46-48' },
 			{
-				label: 'XXL',
+				label: '2XL',
 				catalogObjectId: 'SHIDKLU5M7SZPW7APCCPACPR',
-				description: 'XXL – chest 50-52'
+				description: '2XL – chest 50-52'
 			}
 		],
 		provider: 'square',
@@ -399,17 +399,17 @@ export const Shirts = [
 			},
 			{ label: 'XL', catalogObjectId: 'OYTZLIBQQ2XTMI66HW6B3CAU', description: 'XL – chest 46-48' },
 			{
-				label: 'XXXL',
+				label: '3XL',
 				catalogObjectId: '73PHRWWGYWOTANHARTJVGEYT',
 				description: '3XL – chest 52-54'
 			},
 			{
-				label: 'XXXXL',
+				label: '4XL',
 				catalogObjectId: 'PIKSTRUQ3UGQ3EZPE4DWFW73',
 				description: '4XL – chest 56-58'
 			},
 			{
-				label: 'XXXXXL',
+				label: '5XL',
 				catalogObjectId: 'TR3VVZ7XJ55DDLS3IZSEOXJC',
 				description: '5XL – chest 60-62'
 			}
@@ -450,22 +450,22 @@ export const Shirts = [
 				description: 'Large – chest 42-44'
 			},
 			{
-				label: 'XXL',
+				label: '2XL',
 				catalogObjectId: 'CLKETJNHTE5XJRNPPCWCGJB7',
 				description: '2XL – chest 48-50'
 			},
 			{
-				label: 'XXXL',
+				label: '3XL',
 				catalogObjectId: 'X2X7NI7EFK7EHNUH44PGAYGH',
 				description: '3XL – chest 52-54'
 			},
 			{
-				label: 'XXXXL',
+				label: '4XL',
 				catalogObjectId: 'HX37R542VEZ3H2BI4KIQN3GB',
 				description: '4XL – chest 56-58'
 			},
 			{
-				label: 'XXXXXL',
+				label: '5XL',
 				catalogObjectId: 'HQTU3TQRBZZLRB2RVZLKPSPU',
 				description: '5XL – chest 60-62'
 			}
@@ -497,7 +497,7 @@ export const Shirts = [
 				description: 'Small – chest 34-36'
 			},
 			{
-				label: 'XXXXL',
+				label: '4XL',
 				catalogObjectId: 'QZR247VSO2XOSEWI4MTCPUCI',
 				description: '4XL – chest 56-58'
 			}

@@ -100,7 +100,7 @@
 		background: rgba(0, 0, 0, 0.6);
 		align-items: center;
 		justify-content: center;
-		z-index: 999;
+		z-index: 998;
 	}
 
 	.modal-content {
@@ -111,6 +111,10 @@
 		max-height: 90vh;
 		overflow-y: auto;
 		text-align: center;
+
+		.btn-Ghost {
+			margin-top: 1rem;
+		}
 	}
 
 	/* 🦕  🦖🦖🦖 🦕 🦕 Carts  💀= 💣 🌠 */
