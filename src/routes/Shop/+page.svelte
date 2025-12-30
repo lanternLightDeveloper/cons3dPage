@@ -97,16 +97,23 @@
 	}
 
 	.heading-border {
-		background: url('$lib/Images/dripBord.png') no-repeat center / cover;
+		background: url('$lib/Images/dripBack.png') no-repeat center / cover;
 		height: 8rem;
 		width: fit-content;
 		margin: 0 25vw;
 		padding: 1.5rem 2rem;
 
 		h2 {
-			margin: 0 2.75rem;
+			margin: 0 2rem;
 			width: 6rem;
-			padding: 0 1.25rem;
+			padding: 0.5rem 1.5rem;
+		}
+
+		@media only screen and (min-width: 1024px) {
+			h2 {
+				width: 6rem;
+				padding: 0.25rem 1rem;
+			}
 		}
 	}
 </style>

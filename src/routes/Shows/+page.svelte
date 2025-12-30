@@ -49,7 +49,7 @@
 	.showPage {
 		min-height: 100vh;
 		height: 100%;
-		background-image: url('$lib/Images/con35.jpg');
+		background-image: url('$lib/Images/con8.jpg');
 		background-size: cover;
 		background-position: center;
 	}

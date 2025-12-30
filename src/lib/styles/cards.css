@@ -75,7 +75,7 @@
 .card-Sideline h3 { margin-top: 0; }
 
 .card-Topper {
-    background: var(--bg-2);
+    background: var(--hallow-Accent);
     color: #fff;
     padding: 1.6rem;
     width: 60vw;
@@ -94,6 +94,10 @@
     h2, h3 {
         padding: 0;
         margin:100% 0 0 0;
+    }
+
+    h2, h3, p {
+        background: var(--hallow);
     }
 
     .price {
@@ -150,13 +154,17 @@
 	}
 
             @media only screen and (min-width: 1024px) { 
-        width: 40vw;
-        height: 45vh; 
+        width: 30vw;
+        height: fit-content;
+
+            h2, h3, p {
+        font-size: var(--size-5);
+    }
 	}
 
         @media only screen and (min-width: 1440px) { 
         width: 20vw;
-        height: 40vh; 
+        height: fit-content; 
 	}
 }
 .card-Topper:before {

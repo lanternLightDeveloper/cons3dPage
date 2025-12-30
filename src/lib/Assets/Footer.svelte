@@ -52,7 +52,7 @@
 	}
 
 	footer a {
-		color: var(--hover);
+		color: var(--hover-2);
 		text-decoration: none;
 	}
 

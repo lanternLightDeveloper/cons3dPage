@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { galleryImages } from '$lib/Images/GalleryData';
+	import { galleryImages } from '$lib/Images/gallery/GalleryData';
 
 	let selectedIndex = $state<number | null>(null);
 
@@ -61,7 +61,7 @@
 		<div class="gallery-modal-content" tabindex="-1">
 			<img src={galleryImages[selectedIndex].src} alt={galleryImages[selectedIndex].alt} />
 			<h2 id="gallery-modal-title" class="visually-hidden">Image preview</h2>
-			<p>{galleryImages[selectedIndex].caption}</p>
+			<!-- <p>{galleryImages[selectedIndex].alt}</p> -->
 
 			<div class="modal-nav">
 				<button
@@ -167,6 +167,10 @@
 
 		@media only screen and (min-width: 768px) {
 			max-width: 70%;
+		}
+
+		@media only screen and (min-width: 1440px) {
+			max-width: 50%;
 		}
 	}
 

@@ -38,23 +38,19 @@
 			}
 
 			cooldownRemaining = Math.ceil((COOLDOWN_MS - diff) / 60000);
-		}, 1000 * 30); // update every 30s (or 1000 for every second)
+		}, 1000 * 30);
 	}
 
 	function handleSubmit(event: SubmitEvent) {
-		// Block if still in cooldown
 		if (cooldownRemaining > 0) {
 			event.preventDefault();
 			alert(`Please wait ${cooldownRemaining} more minute(s) before sending another message.`);
 			return;
 		}
 
-		// Set cooldown *before* submit – assume success for client-side
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem('lastContactSubmit', Date.now().toString());
 		}
-
-		// let the form submit to Netlify
 	}
 </script>
 

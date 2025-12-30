@@ -14,7 +14,7 @@
     --gradient: linear-gradient(to bottom right,var(--accent-1),   color-mix(in srgb, var(--accent-1) 90%, var(--accent-2) 10%),var(--accent-2));
     --gradientUp:linear-gradient(0deg,var(--bg-1), var(--bg-1),  color-mix(in srgb, var(--bg-1) 90%, var(--accent-1) 10%),var(--accent-1));
 
-    --hover: color-mix(in oklch, var(--accent-1) 80%, black 30%);
+    --hover: color-mix(in oklch, var(--accent-1) 80%, black 40%);
     --hover-2: color-mix(in oklch, var(--accent-2) 80%, black 30%);
     --color-active: color-mix(in oklch, var(--accent-1 ) 80%, white 15%);
 
@@ -22,7 +22,7 @@
     --border-color-2: color-mix(in oklch, var(--accent-2) 100%, var(--bg-1) 10%);
     
     --hallow:color-mix(in oklch, var(--bg-2) 100%, transparent 50%);
-    --hallow-Accent:color-mix(in oklch, var(--accent-1) 100%, transparent 80%);
+    --hallow-Accent:color-mix(in oklch, var(--hover) 100%, transparent 80%);
 }
 
     [data-theme="Dark"] {

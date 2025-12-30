@@ -27,10 +27,6 @@
             z-index: 1;
             width: 85%;
             position: relative; 
-            background-color: var(--hallow); 
-            border-radius: var(--rad-Tiny);
-            backdrop-filter: blur(10px);
-            --webkit-backdrop-filter: blur(1.5px);
         }
         
         img {

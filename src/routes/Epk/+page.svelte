@@ -28,7 +28,7 @@
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
-	/* 🦕  🦖🦖🦖 🦕 🦕 form timer 💀= 💣 🌠 */
+	/* 🦕  🦖🦖🦖 🦕 🦕 contact cooldown  💀= 💣 🌠 */
 
 	let cooldownRemaining = $state(0);
 	const COOLDOWN_MINUTES = 33;
@@ -331,7 +331,7 @@
 		z-index: 975;
 
 		.header-Image {
-			background-image: url('$lib/Images/gallery/con31.jpg');
+			background-image: url('$lib/Images/Gallery/con31.jpg');
 			background-size: cover;
 			background-position: center;
 			position: absolute;

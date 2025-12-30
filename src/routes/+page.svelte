@@ -1,22 +1,23 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { Canvas } from '@threlte/core';
 	import { Shirts, Cds } from '$lib/data/warehouse/shirts';
 	import { ShowDates } from '$lib/data/shows/showdates.ts';
 	import MerchItem from '$lib/Assets/MerchItem.svelte';
+	import Chainsaw from '$lib/Assets/Chainsaw.svelte';
 
 	// Mobile/Small Images
-	import sm1 from '$lib/Images/con36.jpg';
-	import sm2 from '$lib/Images/con33.jpg';
-	import sm3 from '$lib/Images/con14.jpg';
-	import sm4 from '$lib/Images/con16.jpg';
-	import sm5 from '$lib/Images/con1.jpg';
+	import sm1 from '$lib/Images/con1.jpg';
+	import sm2 from '$lib/Images/con2.jpg';
+	import sm3 from '$lib/Images/con3.jpg';
+	import sm4 from '$lib/Images/con4.jpg';
+	import sm5 from '$lib/Images/con5.jpg';
 
 	// Desktop/Large Images
-	import lg1 from '$lib/Images/con31.jpg';
-	import lg2 from '$lib/Images/con33.jpg';
-	import lg3 from '$lib/Images/con85.jpg';
-	import lg4 from '$lib/Images/con16.jpg';
-	import lg5 from '$lib/Images/con1.jpg';
+	import lg1 from '$lib/Images/con6.jpg';
+	import lg2 from '$lib/Images/con2.jpg';
+	import lg3 from '$lib/Images/con7.jpg';
+	import lg4 from '$lib/Images/con4.jpg';
+	import lg5 from '$lib/Images/con5.jpg';
 
 	const desktopImages = [lg1, lg2, lg3, lg4, lg5];
 	const mobileImages = [sm1, sm2, sm3, sm4, sm5];
@@ -66,6 +67,21 @@
 			.sort((a, b) => a.parsed.getTime() - b.parsed.getTime());
 		return upcoming[0] ?? null;
 	});
+
+	import { onMount } from 'svelte';
+
+	let scrollY = $state(0);
+
+	// update scrollY whenever the user scrolls
+	const handleScroll = () => {
+		scrollY = window.scrollY;
+	};
+
+	// attach listener
+	onMount(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	});
 </script>
 
 <svelte:window bind:innerWidth />
@@ -81,11 +97,11 @@
 <header>
 	<div class="slider" aria-hidden="true">
 		{#key currentImageUrl}
-			<div class="slide" style:background-image="url({currentImageUrl})" transition:fade></div>
+			<div class="slide" style:background-image="url({currentImageUrl})"></div>
 		{/key}
 	</div>
 
-	<section class="header-info light-White">
+	<section class="header-info">
 		<article class="glass-Box">
 			<h2><a href="/Contact">Contact me now</a></h2>
 		</article>
@@ -125,39 +141,47 @@
 </header>
 
 <main class="grid-Main">
-	<section>
+	<section class="content">
 		<h1>SAWWW'S UP</h1>
 		<p>Welcome to the official domain of Con-Crete…</p>
 	</section>
 
-	<section>
+	<div class="ParallaxObjext" style="transform: translateY({scrollY * 0.5}px);  ">
+		<Canvas>
+			<Chainsaw />
+		</Canvas>
+	</div>
+
+	<section class="content">
 		<div class="heading-border"><h2>Merch</h2></div>
-		<p>Buy some dope gear and make yourself look fresh! Click an item to learn more.</p>
+		<p>Buy some dope gear and make yourself look fresh!</p>
 	</section>
 
-	<div class="heading-border"><h2>CDs</h2></div>
-	<section class="grid-SideScroll">
+	<div class="heading-border content">
+		<h2>Cds</h2>
+	</div>
+
+	<section class="grid-SideScroll content">
 		{#each Cds as cd}
-			<article>
-				<button class="card-Topper" onclick={() => openMerch(cd)}>
-					<img src={cd.img} alt={cd.alt} />
-					<h3>{cd.name}</h3>
-					<p class="price">${cd.price}</p>
-				</button>
-			</article>
+			<button class="card-Topper" onclick={() => openMerch(cd)}>
+				<img src={cd.img} alt={cd.alt} />
+				<h2>{cd.name}</h2>
+				<p class="price">${cd.price}</p>
+			</button>
 		{/each}
 	</section>
 
-	<div class="heading-border"><h2>Shirts</h2></div>
-	<section class="grid-SideScroll">
+	<div class="heading-border content">
+		<h2>Shirts</h2>
+	</div>
+
+	<section class="grid-SideScroll content">
 		{#each Shirts as shirt}
-			<article>
-				<button class="card-Topper" onclick={() => openMerch(shirt)}>
-					<img src={shirt.img} alt={shirt.alt} />
-					<h3>{shirt.name}</h3>
-					<p class="price">${shirt.price}</p>
-				</button>
-			</article>
+			<button class="card-Topper" onclick={() => openMerch(shirt)}>
+				<img src={shirt.img} alt={shirt.alt} />
+				<h2>{shirt.name}</h2>
+				<p class="price">${shirt.price}</p>
+			</button>
 		{/each}
 	</section>
 
@@ -191,17 +215,39 @@
 
 <!--svelte-ignore css_unused_selector -->
 <style>
+	.ParallaxObjext {
+		width: 90vw;
+		height: 60vh;
+		/* max-width: 1200px; */
+		margin: -40vh 0;
+		z-index: 1;
+		transform-origin: center;
+		/* mix-blend-mode: multiply; */
+	}
+
+	.content {
+		z-index: 99;
+		position: relative;
+	}
+
 	.heading-border {
-		background: url('../lib/Images/dripBord.png') no-repeat center / cover;
+		background: url('$lib/Images/dripBack.png') no-repeat center / cover;
 		height: 8rem;
 		width: fit-content;
 		margin: 0 25vw;
 		padding: 1.5rem 2rem;
 
 		h2 {
-			margin: 0 2.75rem;
+			margin: 0 2rem;
 			width: 6rem;
-			padding: 0 1.25rem;
+			padding: 0.5rem 1.5rem;
+		}
+
+		@media only screen and (min-width: 1024px) {
+			h2 {
+				width: 6rem;
+				padding: 0.25rem 1rem;
+			}
 		}
 	}
 
@@ -222,28 +268,26 @@
 		grid-template-columns: 1fr;
 		position: absolute;
 		bottom: 6rem;
-		height: 45vh;
-		width: 80vw;
-		margin: 0 2rem;
+		height: 30vh;
+		width: 90%;
+		margin: 0;
 
 		.glass-Box {
-			min-width: 60vw;
-			min-height: 20vh;
 			width: fit-content;
 			height: fit-content;
 			background-color: var(--hallow);
 		}
 
 		@media only screen and (min-width: 768px) {
-			left: 18%;
+			grid-template-columns: 1fr 1fr;
+			height: 30vh;
 
 			.glass-Box {
 				width: fit-content;
 				height: fit-content;
-
-				h1 {
+				h2 {
 					margin: 0;
-					padding: 3rem;
+					padding: 1rem;
 				}
 			}
 		}
@@ -251,9 +295,9 @@
 		@media only screen and (min-width: 1024px) {
 			grid-template-columns: 1fr 1fr;
 
-			margin: 0;
+			margin: 0 10%;
 			.glass-Box {
-				max-width: 30vw;
+				max-width: 40vw;
 				min-width: 30vw;
 				min-height: fit-content;
 				p {
@@ -266,19 +310,13 @@
 
 	table.centered {
 		width: 100%;
-		margin: auto;
 		border-collapse: collapse;
 		table-layout: fixed;
-		border: var(--bord);
 		backdrop-filter: blur(8px);
 		--webkit-backdrop-filter: blur(1.5px);
 
 		a {
-			font-size: var(--size-5);
-		}
-
-		@media only screen and (min-width: 1024px) {
-			width: 70%;
+			font-size: var(--size-4);
 		}
 	}
 	th,
@@ -338,15 +376,32 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: right;
-		animation: pan 20s linear forwards infinite;
+		animation: fadePan 17s ease forwards;
 	}
 
-	@keyframes pan {
-		from {
+	@keyframes fadePan {
+		0% {
+			opacity: 0;
 			background-position: center;
 		}
-		to {
+		25% {
+			opacity: 0.65;
+		}
+		50% {
+			opacity: 0.75;
+		}
+		100% {
+			opacity: 1;
 			background-position: right center;
+		}
+	}
+
+	section {
+		h2 {
+			a {
+				margin: 0;
+				padding: 0;
+			}
 		}
 	}
 
