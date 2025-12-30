@@ -331,7 +331,7 @@
 		z-index: 975;
 
 		.header-Image {
-			background-image: url('$lib/Images/Gallery/con31.jpg');
+			background-image: url('$lib/Images/gallery/con31.jpg');
 			background-size: cover;
 			background-position: center;
 			position: absolute;
@@ -383,7 +383,8 @@
 				max-width: 40vw;
 				min-width: 30vw;
 				min-height: fit-content;
-				p {
+				p,
+				ul {
 					margin: 0;
 					padding: 0;
 				}
