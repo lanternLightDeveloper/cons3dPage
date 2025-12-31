@@ -318,7 +318,7 @@ export const Cds = [
 export const Shirts = [
 	{
 		id: 8,
-		name: 'Snapped: Grey(test mode',
+		name: 'Snapped: Grey',
 		price: 30,
 		currency: 'USD',
 		img: shirt2,
@@ -337,6 +337,7 @@ export const Shirts = [
 			{
 				label: 'S',
 				catalogObjectId: 'RQFLELCRCG6HU2K3Y2ZGTLE2',
+				// catalogObjectId: 'JUCUVF47LLP6I34LINB52L5E',  TEST
 				description: 'Small – chest 34-36'
 			},
 			{

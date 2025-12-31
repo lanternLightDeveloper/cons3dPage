@@ -40,13 +40,14 @@ function getPaymentsApi(client: any) {
 	}
 	return createPayment.bind(payments);
 }
-
 export async function POST(event) {
 	const { request, fetch } = event;
 	const square = getSquareClient();
 	const locationId = env.SQUARE_LOCATION_ID;
+
 	try {
-		const { token, amount, items, postal } = await request.json();
+		// Pull only what we need — amount is removed
+		const { token, items, postal } = await request.json();
 
 		if (!Array.isArray(items) || items.length === 0) {
 			return json({ ok: false, error: 'No items provided' }, { status: 400 });
@@ -61,6 +62,18 @@ export async function POST(event) {
 			}
 		}
 
+		// -----------------------------
+		// SHIPPING + TOTAL CALCULATION
+		// -----------------------------
+		const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+		const shippingFee = subtotal < 100 ? 10 : 0;
+
+		const totalAmount = BigInt(Math.round((subtotal + shippingFee) * 100));
+
+		// -----------------------------
+		// CREATE ORDER
+		// -----------------------------
 		const idempotencyKey = createIdempotencyKey();
 		const createOrder = getOrdersApi(square);
 		const createPayment = getPaymentsApi(square);
@@ -68,28 +81,44 @@ export async function POST(event) {
 		const orderResponse = await createOrder({
 			idempotencyKey,
 			order: {
-				locationId: SQUARE_LOCATION_ID,
-				lineItems: items.map((item: any) => {
-					if (item.provider === 'square') {
-						return {
-							catalogObjectId: item.catalogObjectId,
+				locationId, // FIXED
+				lineItems: [
+					...items.map((item) => {
+						const base = {
 							quantity: String(item.quantity),
 							basePriceMoney: {
 								amount: BigInt(Math.round(item.price * 100)),
 								currency: 'USD'
 							}
 						};
-					} else {
+
+						if (item.provider === 'square') {
+							return {
+								...base,
+								catalogObjectId: item.catalogObjectId
+							};
+						}
+
 						return {
-							name: item.name,
-							quantity: String(item.quantity),
-							basePriceMoney: {
-								amount: BigInt(Math.round(item.price * 100)),
-								currency: 'USD'
-							}
+							...base,
+							name: item.name
 						};
-					}
-				})
+					}),
+
+					// Add shipping line item if needed
+					...(shippingFee > 0
+						? [
+								{
+									name: 'Shipping',
+									quantity: '1',
+									basePriceMoney: {
+										amount: BigInt(1000), // $10
+										currency: 'USD'
+									}
+								}
+							]
+						: [])
+				]
 			}
 		});
 
@@ -113,16 +142,19 @@ export async function POST(event) {
 			);
 		}
 
+		// -----------------------------
+		// CREATE PAYMENT
+		// -----------------------------
 		const paymentResponse = await createPayment({
 			idempotencyKey: createIdempotencyKey(),
 			sourceId: token,
-			locationId: SQUARE_LOCATION_ID,
+			locationId,
 			amountMoney: {
-				amount: BigInt(amount),
+				amount: totalAmount, // FIXED — uses server‑computed total
 				currency: 'USD'
 			},
 			orderId,
-			note: items.map((i: any) => `${i.name} (${i.size}) x${i.quantity}`).join(', '),
+			note: items.map((i) => `${i.name} (${i.size}) x${i.quantity}`).join(', '),
 			shippingAddress: {
 				addressLine1: postal.addressLine1,
 				addressLine2: postal.addressLine2,
@@ -149,7 +181,10 @@ export async function POST(event) {
 			);
 		}
 
-		const kunakiItems = items.filter((i: any) => i.provider === 'kunaki');
+		// -----------------------------
+		// KUNAKI FULFILLMENT
+		// -----------------------------
+		const kunakiItems = items.filter((i) => i.provider === 'kunaki');
 		let kunakiResult = null;
 
 		if (kunakiItems.length > 0) {
@@ -167,7 +202,7 @@ export async function POST(event) {
 			items,
 			kunakiResult
 		});
-	} catch (err: any) {
+	} catch (err) {
 		console.error('CHECKOUT EXCEPTION (catch block):', err);
 		return json(
 			{

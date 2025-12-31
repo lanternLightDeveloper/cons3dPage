@@ -5,6 +5,7 @@
 	import { MathUtils } from 'three';
 	import { T } from '@threlte/core';
 	import { OrbitControls, GLTF } from '@threlte/extras';
+
 	const { data } = $props();
 	const { applicationId, locationId } = data.publicConfig;
 
@@ -20,6 +21,10 @@
 	let payments = $state<any>(null);
 	let card = $state<any>(null);
 	let status = $state('Waiting');
+
+	// ✅ Correct Svelte 5 derived runes
+	let shippingFee = $derived(cart.totalPrice < 100 ? 10 : 0);
+	let finalTotal = $derived(cart.totalPrice + shippingFee);
 
 	async function loadSquareSdk() {
 		return new Promise((resolve, reject) => {
@@ -56,12 +61,12 @@
 			};
 		});
 
+		// ❌ we no longer need to send `amount` because server computes total
 		const response = await fetch('/api/pay', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				token: result.token,
-				amount: Math.round(cart.totalPrice * 100),
 				items: simplifiedItems,
 				postal: {
 					addressLine1: form.address1,
@@ -79,12 +84,13 @@
 		if (data.ok) {
 			status = 'Payment successful!';
 			cart.clear();
-
 			goto('/pay-success');
 		} else {
 			status = 'Payment failed: ' + data.error;
 		}
 	}
+
+	let amountUntilFreeShipping = $derived(Math.max(0, 100 - cart.totalPrice));
 
 	$effect(async () => {
 		const SquareSdk = await loadSquareSdk();
@@ -182,13 +188,21 @@
 
 			<div class="form-Footer">
 				<div class="total-row">
-					<p><span>Total: ${cart.totalPrice.toFixed(2)}</span></p>
+					{#if shippingFee > 0}
+						<p><small>Includes $10 shipping for orders under $100</small></p>
+					{/if}
+					<p><span>Total: ${finalTotal.toFixed(2)}</span></p>
 				</div>
 
 				<div id="card-container"></div>
 
 				<button type="submit" class="btn-Ghost">Checkout</button>
-				<p>{status}</p>
+				{#if amountUntilFreeShipping > 0}
+					<p class="free-shipping-note">
+						Spend ${amountUntilFreeShipping.toFixed(2)} more for free shipping
+					</p>
+				{/if}
+				<p class="status-message">{status}</p>
 			</div>
 		</form>
 	{/if}
