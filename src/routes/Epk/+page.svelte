@@ -178,37 +178,58 @@
 	<details>
 		<summary>
 			<p>
-				The story of our band didn’t begin on a stage or in a studio — it started in small rooms
-				filled with mismatched gear, borrowed cables, and late-night conversations about what music
-				should feel like. Before a single song was recorded, we were just a couple of friends trying
-				to make sense of the noise in our heads, chasing that moment when a chord progression hits
-				just right and everything else falls away. Those early days weren’t glamorous, but they were
-				honest, and that honesty still sits at the core of everything we create.
+				CON-CRETE was born on March 11th, 1981 on the wet streets of Seattle, WA in a haunted
+				cemetery during a Satanic Ritual. Okay that's bullshit, he was born in a hospital, but that
+				shit would have been awesome if it was true. The Dark Minister has been infecting the world
+				with his Horrorcrunk flows for well over 25 years now alongside his partner in crime
+				Bloodshot.
 			</p></summary
 		>
 
+		<ul class="marg-Also">
+			<li><strong>Age:</strong> 783 years old</li>
+			<li><strong>Height:</strong> 12'3"</li>
+			<li><strong>Weight:</strong> 2 tons</li>
+			<li><strong>Likes:</strong> Long walks on the beach, crushing small buildings, sunsets.</li>
+			<li><strong>Dislikes:</strong> Being chipped away at, water, pigeons.</li>
+		</ul>
+
 		<p>
-			We spent years experimenting, shifting between genres, and carving out our identity one messy
-			demo at a time. There were nights when we played the same riff for hours, changing tiny
-			details until something clicked and we all looked at each other with that silent, shared
-			“there it is”. The process taught us patience and trust — trust in each other, trust in our
-			instincts, and trust that the music would guide us if we stayed open to it.
+			From the fog and clouds of the Northwest to the hurricanes of Florida coast, this monster of
+			the industry has traveled state to state. Every performance honing a craft that is something
+			truly amazing to be seen. Every face in the crowd more fuel to each moment to be absolutely
+			devastating. Whether with friend or foe, CON-CRETE is a force to be reckoned with.
 		</p>
 
 		<p>
-			What kept us moving forward wasn’t a clear plan but a shared obsession: the need to write
-			songs that actually meant something. Music has always been more than entertainment for us.
-			It’s a way to process what life throws at you — the heavy moments, the strange ones, the ones
-			you can’t quite talk about. Each track became its own little confession, a snapshot of
-			whatever stage of life we were moving through.
+			CON-CRETE has 22 solid albums under his belt which include "I HATE COPS" and "SNAPPED." He has
+			performed at events like The Gathering of the Juggalos and performed with a list of legends
+			artist such as:
 		</p>
-
+		<ul class="two-col-grid">
+			<li>Mastamind</li>
+			<li>Insane Clown Posse</li>
+			<li>Insane Poetry</li>
+			<li>Jason Porter</li>
+			<li>Murs</li>
+			<li>Esham</li>
+			<li>Haystack</li>
+			<li>Mars</li>
+			<li>Mike Jones</li>
+			<li>Paul Wall</li>
+			<li>Twiztid</li>
+			<li>ABK</li>
+			<li>Devin The Dude</li>
+			<li>Andre Nickatina</li>
+			<li>Scum</li>
+			<li>King Gordy</li>
+			<li>Potluck</li>
+			<li>Kottonmouth Kings</li>
+			<li>Doomsday Productions</li>
+		</ul>
 		<p>
-			Our first shows were small enough that we could recognize every face in the room, but even
-			then, the energy was unmistakable. People connected with the rawness of the sound, the
-			imperfections, and the stories behind the songs. Those early supporters were a reminder that
-			music doesn’t need fireworks or production tricks to matter — it just needs to be real. And
-			real is something we’ve always had in abundance.
+			Like anybody gives a fuck who he opened for. Either way "The Dark Minister" is gonna keep on
+			rocking mics until his fucking lungs explode bottom line.
 		</p>
 	</details>
 
@@ -219,8 +240,8 @@
 			<p>“Most streamed track”</p>
 			<ul>
 				<li style="font-style: italic;">Asshole</li>
-				<li>Produced by Devereaux</li>
-				<li>Mixed and mastered by Devereaux</li>
+				<li>Produced by Con-Crete</li>
+				<li>Mixed and mastered by Con-Crete</li>
 				<li>Over 9 billion plays</li>
 			</ul>
 			<iframe
@@ -235,7 +256,7 @@
 			<ul>
 				<li style="font-style: italic;">Good Guy</li>
 				<li>Produced by Devereaux</li>
-				<li>Mixed and mastered by Devereaux</li>
+				<li>Mixed and mastered by Con-Crete</li>
 				<li>Over 9 billion plays</li>
 			</ul>
 			<iframe
@@ -243,7 +264,7 @@
 				src="https://bandcamp.com/EmbeddedPlayer/track=1498605677/size=large/bgcol=333333/linkcol=e32c14/tracklist=false/artwork=small/transparent=true/"
 				seamless
 				><a href="https://contothecrete.bandcamp.com/track/good-guy-produced-by-devereaux"
-					>Good Guy (Produced by Devereaux) by CON-CRETE</a
+					>Good Guy (Produced by Con-Crete) by CON-CRETE</a
 				></iframe
 			>
 		</figure>
@@ -252,8 +273,8 @@
 			<p>“Fan favorite”</p>
 			<ul>
 				<li style="font-style: italic;">WITCHDOCTA ft. Razakel</li>
-				<li>Produced by Devereaux</li>
-				<li>Mixed and mastered by Devereaux</li>
+				<li>Produced by Con-Crete</li>
+				<li>Mixed and mastered by Con-Crete</li>
 				<li>Featuring additional vocals by Razakel</li>
 				<li>Over 9 billion plays</li>
 				<iframe
@@ -406,6 +427,14 @@
 		margin-top: 1.5rem;
 	}
 
+	.two-col-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.5rem 2rem;
+		list-style-type: '-';
+		padding-left: 1.5rem;
+	}
+
 	.carousel {
 		position: relative;
 		width: 100%;
@@ -476,12 +505,12 @@
 		content: '>';
 		position: absolute;
 		left: 10vw;
-		top: 20vh;
+		top: 15vh;
 		transition: transform 0.2s ease;
 		border: var(--bord);
 
 		@media only screen and (min-width: 1024px) {
-			top: 17vh;
+			top: 12vh;
 		}
 	}
 

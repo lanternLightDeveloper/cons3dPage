@@ -120,7 +120,7 @@
 		position: fixed;
 		top: 0;
 		right: 0;
-		z-index: 100;
+		z-index: 960;
 		padding: 0.5rem;
 		background: #ff1a1a;
 		color: white;
@@ -166,7 +166,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		z-index: 999;
+		z-index: 959;
 		overflow: hidden;
 		animation: fadeIn 0.4s ease-in-out forwards;
 	}

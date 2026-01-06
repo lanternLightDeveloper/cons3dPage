@@ -4,7 +4,9 @@
 	import { ShowDates } from '$lib/data/shows/showdates.ts';
 	import MerchItem from '$lib/Assets/MerchItem.svelte';
 	import Chainsaw from '$lib/Assets/Chainsaw.svelte';
+	import Flyer from '$lib/Images/FRONTFLYER.jpg';
 
+	/* 🦕  🦖🦖🦖 🦕 🦕  Entry Banner 💀= 💣 🌠 */
 	// Mobile/Small Images
 	import sm1 from '$lib/Images/con1.jpg';
 	import sm2 from '$lib/Images/con2.jpg';
@@ -41,19 +43,7 @@
 		return () => clearInterval(id);
 	});
 
-	let merchItem = $state(false);
-	let selectedItem = $state(null);
-
-	function openMerch(item) {
-		selectedItem = item;
-		merchItem = true;
-	}
-
-	function closeMerch() {
-		merchItem = false;
-		selectedItem = null;
-	}
-
+	// Date for show parser
 	const parseDate = (str: string) => {
 		const [month, day, year] = str.split('-').map(Number);
 		return new Date(year, month - 1, day);
@@ -68,16 +58,29 @@
 		return upcoming[0] ?? null;
 	});
 
+	/* 🦕  🦖🦖🦖 🦕 🦕  Merch 💀= 💣 🌠 */
+	let merchItem = $state(false);
+	let selectedItem = $state(null);
+
+	function openMerch(item) {
+		selectedItem = item;
+		merchItem = true;
+	}
+
+	function closeMerch() {
+		merchItem = false;
+		selectedItem = null;
+	}
+
+	/* 🦕  🦖🦖🦖 🦕 🦕  Parallax 💀= 💣 🌠 */
 	import { onMount } from 'svelte';
 
 	let scrollY = $state(0);
 
-	// update scrollY whenever the user scrolls
 	const handleScroll = () => {
 		scrollY = window.scrollY;
 	};
 
-	// attach listener
 	onMount(() => {
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
@@ -102,12 +105,10 @@
 	</div>
 
 	<section class="header-info">
-		<article class="glass-Box">
-			<h2><a href="/Contact">Contact me now</a></h2>
+		<article class="glass-Box flyer">
+			<a href={nextShow().ticketsUrl} target="_blank" rel="noopener"><img src={Flyer} alt="" /> </a>
 		</article>
-		<article class="glass-Box large-Only">
-			<h2><a href="/Shop">Merch</a></h2>
-		</article>
+
 		<article class="glass-Box">
 			<h2><a href="/Shows">Shows</a></h2>
 
@@ -123,10 +124,18 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href={nextShow.venueUrl}>{nextShow().location}</a></td>
+							<td>
+								<a href={nextShow().venueUrl} target="_blank" rel="noopener">
+									{nextShow().location}
+								</a>
+							</td>
 							<td>{nextShow().city}</td>
 							<td>{nextShow().date}</td>
-							<td><a href={nextShow.ticketsUrl}>{nextShow().price} / Tickets</a></td>
+							<td>
+								<a href={nextShow().ticketsUrl} target="_blank" rel="noopener">
+									{nextShow().price} / Tickets
+								</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -136,6 +145,9 @@
 		</article>
 		<article class="glass-Box large-Only">
 			<h2><a href="/Videos">Videos</a></h2>
+		</article>
+		<article class="glass-Box large-Only">
+			<h2><a href="/Shop">Merch</a></h2>
 		</article>
 	</section>
 </header>
@@ -195,7 +207,7 @@
 		</dialog>
 	{/if}
 
-	<section>
+	<section class="video-Frame">
 		<h2>Check out some <a href="/Videos">videos!</a></h2>
 		<figure>
 			<figcaption>Lake of fire</figcaption>
@@ -267,7 +279,7 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		position: absolute;
-		bottom: 6rem;
+		top: 15rem;
 		height: 30vh;
 		width: 90%;
 		margin: 0;
@@ -276,12 +288,18 @@
 			width: fit-content;
 			height: fit-content;
 			background-color: var(--hallow);
+
+			img {
+				width: 65%;
+				object-fit: cover;
+				animation: pulse 1s infinite;
+			}
 		}
 
 		@media only screen and (min-width: 768px) {
 			grid-template-columns: 1fr 1fr;
 			height: 30vh;
-
+			top: 45vh;
 			.glass-Box {
 				width: fit-content;
 				height: fit-content;
@@ -294,8 +312,9 @@
 
 		@media only screen and (min-width: 1024px) {
 			grid-template-columns: 1fr 1fr;
-
+			top: 45vh;
 			margin: 0 10%;
+			height: fit-content;
 			.glass-Box {
 				max-width: 40vw;
 				min-width: 30vw;
@@ -304,6 +323,26 @@
 					margin: 0;
 					padding: 0;
 				}
+			}
+
+			.flyer {
+				grid-row: span 3;
+			}
+		}
+
+		@media only screen and (min-width: 1440px) {
+			.glass-Box {
+				max-width: 35vw;
+				min-width: 20vw;
+				min-height: fit-content;
+				p {
+					margin: 0;
+					padding: 0;
+				}
+			}
+
+			.flyer {
+				grid-row: span 3;
 			}
 		}
 	}
@@ -405,14 +444,29 @@
 		}
 	}
 
-	iframe {
+	.video-Frame {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		width: 100%;
+		max-width: 1000px;
+		margin: 2rem auto;
+		@media only screen and (min-width: 1024px) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.video-Frame iframe {
 		position: relative;
 		z-index: 1;
+	}
+
+	iframe {
 		display: block;
-		width: 90%;
+		width: 100%;
 		max-width: 560px;
 		aspect-ratio: 16/9;
-		margin: 0;
+		margin: 2rem auto;
 		border-radius: 8px;
 		z-index: 0;
 	}

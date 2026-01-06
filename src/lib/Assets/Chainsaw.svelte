@@ -20,6 +20,4 @@
 <T.AmbientLight intensity={2} />
 <T.DirectionalLight position={[0, 0, 3]} castShadow />
 
-<div class="test">
-	<GLTF rotation.y={rotation} url="./ChainsawSolo.glb" />
-</div>
+<GLTF rotation.y={rotation} url="./ChainsawSolo.glb" />

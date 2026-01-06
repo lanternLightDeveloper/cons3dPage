@@ -112,6 +112,10 @@
 		flex-direction: column;
 		padding: 1.5rem;
 		overflow-y: auto;
+
+		@media only screen and (min-width: 1440px) {
+			width: 600px;
+		}
 	}
 
 	.cart-header {
@@ -121,6 +125,10 @@
 		margin-bottom: 1rem;
 		border-bottom: var(--bord);
 		padding-bottom: 1rem;
+
+		h2 {
+			margin: 1rem 0;
+		}
 	}
 
 	.btn-checkout {

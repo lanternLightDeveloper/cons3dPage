@@ -1,5 +1,20 @@
-<script>
+<script lang="ts">
 	import { ShowDates } from '$lib/data/shows/showdates.ts';
+
+	// Date for show parser
+	const parseDate = (str: string) => {
+		const [month, day, year] = str.split('-').map(Number);
+		return new Date(year, month - 1, day);
+	};
+
+	const today = $state(new Date());
+
+	const nextShow = $derived(() => {
+		const upcoming = ShowDates.map((d) => ({ ...d, parsed: parseDate(d.date) }))
+			.filter((d) => d.parsed.getTime() >= today.getTime())
+			.sort((a, b) => a.parsed.getTime() - b.parsed.getTime());
+		return upcoming[0] ?? null;
+	});
 </script>
 
 <svelte:head>
@@ -9,34 +24,41 @@
 		content="See Con-Crete's upcoming shows, dates, venues, and ticket info."
 	/>
 </svelte:head>
-:
+
 <main class="showPage">
 	<article>
 		<h1>Shows</h1>
 
-		<table class="centered">
-			<caption>Upcoming Con-Crete Shows</caption>
-			<thead>
-				<tr>
-					<th>Place</th>
-					<th>City</th>
-					<th>Date</th>
-					<th>Time</th>
-					<th>Tickets</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each ShowDates as d}
+		{#if nextShow()}
+			<table class="centered">
+				<thead>
 					<tr>
-						<td><a href={d.venueUrl}>{d.location}</a></td>
-						<td>{d.city}</td>
-						<td><time datetime={d.date}>{d.date}</time></td>
-						<td><time datetime={d.time}>{d.time}</time></td>
-						<td><a href={d.ticketsUrl}>Tickets: {d.price}</a></td>
+						<th>Place</th>
+						<th>City</th>
+						<th>Date</th>
+						<th>Tickets</th>
 					</tr>
-				{/each}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<a href={nextShow().venueUrl} target="_blank" rel="noopener">
+								{nextShow().location}
+							</a>
+						</td>
+						<td>{nextShow().city}</td>
+						<td>{nextShow().date}</td>
+						<td>
+							<a href={nextShow().ticketsUrl} target="_blank" rel="noopener">
+								{nextShow().price} / Tickets
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		{:else}
+			<p>No upcoming shows found.</p>
+		{/if}
 	</article>
 </main>
 
