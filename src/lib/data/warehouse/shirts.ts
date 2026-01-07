@@ -84,7 +84,7 @@ export const Cds = [
 		availability: 'InStock',
 		format: 'Audio CD',
 		genre: 'Rap',
-		sizes: [{ label: 'CD', productId: 'PX00ZZ8K8FA', description: 'Physical audio CD' }],
+		sizes: [{ label: 'CD', productId: 'PX00Z8K8FA', description: 'Physical audio CD' }],
 		provider: 'kunaki',
 		type: 'cd'
 	},
@@ -124,7 +124,7 @@ export const Cds = [
 		availability: 'InStock',
 		format: 'Audio CD',
 		genre: 'Rap',
-		sizes: [{ label: 'CD', productId: 'PX00Z193GH', description: 'Physical audio CD' }],
+		sizes: [{ label: 'CD', productId: 'PX00YF1WV2', description: 'Physical audio CD' }],
 		provider: 'kunaki',
 		type: 'cd'
 	},

@@ -10,6 +10,8 @@
 	const { applicationId, locationId } = data.publicConfig;
 
 	let form = $state({
+		name: '',
+		email: '',
 		address1: '',
 		address2: '',
 		city: '',
@@ -69,6 +71,8 @@
 				token: result.token,
 				items: simplifiedItems,
 				postal: {
+					name: form.name,
+					email: form.email,
 					addressLine1: form.address1,
 					addressLine2: form.address2,
 					city: form.city,
@@ -167,6 +171,9 @@
 		<h1>Checkout</h1>
 
 		<form class="classicForm" onsubmit={handlePayment}>
+			<label>
+				<input bind:value={form.name} required placeholder="Name" />
+			</label>
 			<label>
 				<input bind:value={form.address1} required placeholder="Address(Main)" />
 			</label>

@@ -4,49 +4,42 @@ import { env } from '$env/dynamic/private';
 
 const { SQUARE_LOCATION_ID } = env;
 
-function createIdempotencyKey() {
-	return crypto.randomUUID();
-}
-
 function sanitize(obj: any) {
 	return JSON.parse(
 		JSON.stringify(obj, (key, value) => (typeof value === 'bigint' ? value.toString() : value))
 	);
 }
 
+function createIdempotencyKey() {
+	return crypto.randomUUID();
+}
+
 function getOrdersApi(client: any) {
 	const orders = client?.ordersApi ?? client?.orders;
-	if (!orders) throw new Error('Square Orders API not found on client (ordersApi/orders missing)');
+	if (!orders) throw new Error('Square Orders API not found on client');
 	const createOrder = orders.createOrder ?? orders.create;
 	if (typeof createOrder !== 'function') {
-		const keys = Object.keys(orders);
-		throw new Error(
-			`Square Orders API found but no create function (checked createOrder/create). Keys: ${keys.join(', ')}`
-		);
+		throw new Error('Square Orders API missing create function');
 	}
 	return createOrder.bind(orders);
 }
 
 function getPaymentsApi(client: any) {
 	const payments = client?.paymentsApi ?? client?.payments;
-	if (!payments)
-		throw new Error('Square Payments API not found on client (paymentsApi/payments missing)');
+	if (!payments) throw new Error('Square Payments API not found on client');
 	const createPayment = payments.createPayment ?? payments.create;
 	if (typeof createPayment !== 'function') {
-		const keys = Object.keys(payments);
-		throw new Error(
-			`Square Payments API found but no create function (checked createPayment/create). Keys: ${keys.join(', ')}`
-		);
+		throw new Error('Square Payments API missing create function');
 	}
 	return createPayment.bind(payments);
 }
+
 export async function POST(event) {
 	const { request, fetch } = event;
 	const square = getSquareClient();
 	const locationId = env.SQUARE_LOCATION_ID;
 
 	try {
-		// Pull only what we need — amount is removed
 		const { token, items, postal } = await request.json();
 
 		if (!Array.isArray(items) || items.length === 0) {
@@ -66,9 +59,7 @@ export async function POST(event) {
 		// SHIPPING + TOTAL CALCULATION
 		// -----------------------------
 		const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
 		const shippingFee = subtotal < 100 ? 10 : 0;
-
 		const totalAmount = BigInt(Math.round((subtotal + shippingFee) * 100));
 
 		// -----------------------------
@@ -81,7 +72,7 @@ export async function POST(event) {
 		const orderResponse = await createOrder({
 			idempotencyKey,
 			order: {
-				locationId, // FIXED
+				locationId,
 				lineItems: [
 					...items.map((item) => {
 						const base = {
@@ -92,32 +83,41 @@ export async function POST(event) {
 							}
 						};
 
-						if (item.provider === 'square') {
-							return {
-								...base,
-								catalogObjectId: item.catalogObjectId
-							};
-						}
-
-						return {
-							...base,
-							name: item.name
-						};
+						return item.provider === 'square'
+							? { ...base, catalogObjectId: item.catalogObjectId }
+							: { ...base, name: item.name };
 					}),
-
-					// Add shipping line item if needed
 					...(shippingFee > 0
 						? [
 								{
 									name: 'Shipping',
 									quantity: '1',
 									basePriceMoney: {
-										amount: BigInt(1000), // $10
+										amount: BigInt(1000),
 										currency: 'USD'
 									}
 								}
 							]
 						: [])
+				],
+				fulfillments: [
+					{
+						type: 'SHIPMENT',
+						state: 'PROPOSED',
+						shipmentDetails: {
+							recipient: {
+								displayName: postal.name,
+								address: {
+									addressLine1: postal.addressLine1,
+									addressLine2: postal.addressLine2,
+									locality: postal.city,
+									administrativeDistrictLevel1: postal.state,
+									postalCode: postal.zip,
+									country: postal.country
+								}
+							}
+						}
+					}
 				]
 			}
 		});
@@ -150,7 +150,7 @@ export async function POST(event) {
 			sourceId: token,
 			locationId,
 			amountMoney: {
-				amount: totalAmount, // FIXED — uses server‑computed total
+				amount: totalAmount,
 				currency: 'USD'
 			},
 			orderId,
@@ -161,7 +161,8 @@ export async function POST(event) {
 				locality: postal.city,
 				administrativeDistrictLevel1: postal.state,
 				postalCode: postal.zip,
-				country: postal.country
+				country: postal.country,
+				firstName: postal.name
 			}
 		});
 
@@ -203,7 +204,6 @@ export async function POST(event) {
 			kunakiResult
 		});
 	} catch (err) {
-		console.error('CHECKOUT EXCEPTION (catch block):', err);
 		return json(
 			{
 				ok: false,

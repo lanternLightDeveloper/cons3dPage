@@ -17,7 +17,7 @@ export async function POST({ request }) {
 <UserId>${env.KUNAKI_USER}</UserId>
 <Password>${env.KUNAKI_PASS}</Password>
 <Mode>LIVE</Mode>
-<Name>TEST customer</Name>
+<Name>${postal.name}</Name>
 <Company></Company>
 <Address1>${postal.addressLine1}</Address1>
 <Address2>${postal.addressLine2 ?? ''}</Address2>
